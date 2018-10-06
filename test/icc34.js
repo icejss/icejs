@@ -1,0 +1,17 @@
+console.log(Ice.isPhone("abc"));
+console.log(Ice.isPhone("135012345678"));
+console.log(Ice.isPhone("1350123456"));
+console.log(Ice.isPhone("1350123456a"));
+console.log(Ice.isPhone("1350123456."));
+console.log("----------------");
+console.log(Ice.isPhone("17001234567"));
+console.log(Ice.isPhone("16601234567"));
+console.log(Ice.isPhone("19801234567"));
+console.log(Ice.isPhone("19901234567"));
+console.log(Ice.isPhone("18001234567"));
+console.log("----------------");
+console.log(Ice.isPhone("12312345678"));
+console.log(Ice.isPhone("01212345678"));
+console.log(Ice.isPhone("19712345678"));
+console.log(Ice.isPhone("16712345678"));
+console.log(Ice.isPhone("16512345678"));

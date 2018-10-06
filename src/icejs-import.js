@@ -26,4 +26,8 @@ window.time2second = Ice.time2second;
 window.second2time = Ice.second2time;
 window.getEle = Ice.getEle;
 window.getExtension = Ice.getExtension;
-
+window.isPhone = Ice.isPhone;
+window.isEmail = Ice.isEmail;
+window.isInt = Ice.isInt;
+window.urlConcat = Ice.urlConcat;
+window.iceConfirm = Ice.confirm;

@@ -1,0 +1,17 @@
+console.log(Ice.isEmail("abc@aaa.com.cn"));
+console.log(Ice.isEmail("135012345678"));
+console.log(Ice.isEmail("@qq.com"));
+console.log(Ice.isEmail("def#abc.com"));
+console.log(Ice.isEmail("1350123456."));
+console.log("----------------");
+console.log(Ice.isEmail(null));
+console.log(Ice.isEmail(""));
+console.log(Ice.isEmail("123@q@q.com"));
+console.log(Ice.isEmail("abc.xxx.com"));
+console.log(Ice.isEmail("abcdef@"));
+console.log("----------------");
+console.log(Ice.isEmail("123456789@139.com"));
+console.log(Ice.isEmail("a@xx.cn"));
+console.log(Ice.isEmail("a@q.com"));
+console.log(Ice.isEmail("a@qq.com"));
+console.log(Ice.isEmail("1@126.com"));
