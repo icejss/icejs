@@ -516,10 +516,60 @@ var Ice = {
         }
     },
     /**
+     * 将空转为默认值
+     * @param str 原始字符串
+     * @param defaultValue 字符串为空时的默认值
+     * @return 字符串为空使用默认值
+     */
+    ifnull : function(str, defaultValue) {
+        if (str == null) {
+            if (defaultValue == null) {
+                return "";
+            } else {
+                return defaultValue;
+            }
+        } else {
+            return str;
+        }
+    },
+    /**
+     * 判断是否为空或空集合
+     * @param obj 需要判断空集的值
+     * @return 该值是否为空集
+     */
+    isEmptyColl : function(obj) {
+        if (obj == null) {
+            return true;
+        } else if (obj.constructor == Array && obj.length != null
+                && obj.length == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    },
+    /**
+     * 取字符串相反值
+     * @param str 传入的字符串值
+     * @param trueValue 字符串枚举值1
+     * @param falseValue 字符串枚举值2
+     * @return 字符串相反值
+     */
+    notStr : function(str, trueValue, falseValue) {
+        if (str == null) {
+            return null;
+        } else if (str == trueValue) {
+            return falseValue;
+        } else if (str == falseValue) {
+            return trueValue;
+        }
+    },
+    /**
      * 移除指定字符串开始的字符串
      * 
-     * @param str 原始字符串
-     * @param prefix 指定的开始字符串
+     * @param str
+     *            原始字符串
+     * @param prefix
+     *            指定的开始字符串
      * @return 去掉开始字符串后的字符串
      */
     removeStart : function(str, prefix) {
@@ -1224,7 +1274,9 @@ var Ice = {
         if(window.confirm(message)){
             okFunction(id);
         }else{
-            cancelFunction(id);
+            if(cancelFunction != null){
+                cancelFunction(id);
+            }
         }
     },
     TINY : 0.001

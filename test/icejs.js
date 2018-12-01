@@ -516,10 +516,60 @@ var Ice = {
         }
     },
     /**
+     * 将空转为默认值
+     * @param str 原始字符串
+     * @param defaultValue 字符串为空时的默认值
+     * @return 字符串为空使用默认值
+     */
+    ifnull : function(str, defaultValue) {
+        if (str == null) {
+            if (defaultValue == null) {
+                return "";
+            } else {
+                return defaultValue;
+            }
+        } else {
+            return str;
+        }
+    },
+    /**
+     * 判断是否为空或空集合
+     * @param obj 需要判断空集的值
+     * @return 该值是否为空集
+     */
+    isEmptyColl : function(obj) {
+        if (obj == null) {
+            return true;
+        } else if (obj.constructor == Array && obj.length != null
+                && obj.length == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    },
+    /**
+     * 取字符串相反值
+     * @param str 传入的字符串值
+     * @param trueValue 字符串枚举值1
+     * @param falseValue 字符串枚举值2
+     * @return 字符串相反值
+     */
+    notStr : function(str, trueValue, falseValue) {
+        if (str == null) {
+            return null;
+        } else if (str == trueValue) {
+            return falseValue;
+        } else if (str == falseValue) {
+            return trueValue;
+        }
+    },
+    /**
      * 移除指定字符串开始的字符串
      * 
-     * @param str 原始字符串
-     * @param prefix 指定的开始字符串
+     * @param str
+     *            原始字符串
+     * @param prefix
+     *            指定的开始字符串
      * @return 去掉开始字符串后的字符串
      */
     removeStart : function(str, prefix) {
@@ -1126,5 +1176,108 @@ var Ice = {
                 }
             }
         }
-    }
+    },
+    /**
+     * 判断是否为手机号码
+     * @param phone 手机号码
+     * @return 是否为手机号码
+     */
+    isPhone : function(phone){
+        var regex = /^1([34578][0-9]|66|99|98)[0-9]{8}$/;
+        return regex.test(phone);
+    },
+    /**
+     * 判断是否为邮箱
+     * @param email 邮箱
+     * @return 是否为邮箱
+     */
+    isEmail : function(email){
+        var regex = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+        return regex.test(email);
+    },
+    /**
+     * 判断是否为数字
+     * @param num 数字
+     * @return 是否为数字
+     */
+    isInt : function(num){
+        var regex= /^\d+$/;
+        return regex.test(num);
+    },
+    /**
+     * 连接url和参数
+     * @param url 请求路径
+     * @param param 请求参数
+     * @return 拼接后的字符串
+     */
+    urlConcat : function(url, param){
+        if(url == null || url == "") {
+            if(param == null || param == "") {
+                return "";
+            }else{
+                return param;
+            }
+        }else{
+            if(param == null || param == "") {
+                return url;
+            }else{
+                var lastChar = url.charAt(url.length - 1);
+                var firstChar = param.charAt(0);
+                if(lastChar == "?"){
+                    if(firstChar == "?"){
+                        return url + param.substring(1);
+                    } else if(firstChar == "&") {
+                        return url + param.substring(1);
+                    } else {
+                        return url + param;
+                    }
+                } else if(lastChar == "&"){
+                    if(firstChar == "?"){
+                        return url.substring(0, url.length - 1) + param;
+                    } else if(firstChar == "&") {
+                        return url.substring(0, url.length - 1) + "?" + param.substring(1);
+                    } else {
+                        return url.substring(0, url.length - 1) + "?" + param;
+                    }
+                }else {
+                    var lastStr = url.substring(param.lastIndexOf("/") + 1);
+                    if (lastStr.indexOf("?") != -1){
+                        if(firstChar == "?" || firstChar == "&") {
+                            return url + "&" + param.substring(1);
+                        } else {
+                            return url + "&" + param;
+                        }
+                    } else {
+                        if(firstChar == "?") {
+                            return url + param;
+                        }else if(firstChar == "&"){
+                            return url + "?" + param.substring(1);
+                        } else {
+                            return url + "&" + param;
+                        }
+                    }
+                }
+            }
+        }
+    },
+    /**
+     * 确认删除对话框
+     * @param message 弹框消息
+     * @param id 删除的记录id
+     * @param okFunction 确定回调函数
+     * @param cancelFunction 取消回调函数
+     */
+    confirm : function(message, id, okFunction, cancelFunction){
+        if(message == null || message.trim() == ""){
+            message = "你确认要删除吗?";
+        }
+        if(window.confirm(message)){
+            okFunction(id);
+        }else{
+            if(cancelFunction != null){
+                cancelFunction(id);
+            }
+        }
+    },
+    TINY : 0.001
 };
