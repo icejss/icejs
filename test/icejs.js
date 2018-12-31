@@ -1261,6 +1261,39 @@ var Ice = {
         }
     },
     /**
+     * 日期增加若干天数
+     * @param date 原始日期字符串
+     * @param offest 需要增加的天数
+     * @return 增加天数后的日期字符串
+     */
+    addDays : function(date, offest){
+        var dateVal = null;
+        if(date == null){
+            dateVal = new Date();
+        } else {
+            dateVal = new Date(date.replace(/-/g, "/"));
+        }
+        var dadeOld = dateVal.getDate();
+        dadeOld = dadeOld + offest;
+        dateVal.setDate(dadeOld);
+        var sum = "";
+        var year = dateVal.getFullYear();
+        var month = dateVal.getMonth() + 1;
+        var dateNew = dateVal.getDate();
+        sum += year;
+        sum += "-";
+        if(month < 10){
+            sum += "0";
+        }
+        sum += month;
+        sum += "-";
+        if(dateNew < 10){
+            sum += "0";
+        }
+        sum += dateNew;
+        return sum;
+    },
+    /**
      * 确认删除对话框
      * @param message 弹框消息
      * @param id 删除的记录id

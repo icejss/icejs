@@ -33,4 +33,5 @@ window.isPhone = Ice.isPhone;
 window.isEmail = Ice.isEmail;
 window.isInt = Ice.isInt;
 window.urlConcat = Ice.urlConcat;
+window.addDays = Ice.addDays;
 window.iceConfirm = Ice.confirm;
